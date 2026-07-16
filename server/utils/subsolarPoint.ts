@@ -20,10 +20,12 @@ export function getSubsolarPoint(now: number) {
   const lambda =
     trueLon -
     (0.00569 * Math.PI) / 180 -
-    (0.00478 * Math.PI) / 180 * Math.sin(omega)
+    ((0.00478 * Math.PI) / 180) * Math.sin(omega)
 
   const obliquity =
-    ((23.439291 - jc * (0.013004167 + 0.000000164 * jc) + 0.00256 * Math.cos(omega)) *
+    ((23.439291 -
+      jc * (0.013004167 + 0.000000164 * jc) +
+      0.00256 * Math.cos(omega)) *
       Math.PI) /
     180
 
@@ -50,10 +52,6 @@ export function getSubsolarPoint(now: number) {
 
 export function getTerminator(subsolarLat: number, subsolarLng: number) {
   const points: Array<{ lat: number; lng: number }> = []
-
-  const sx = Math.cos(subsolarLat) * Math.cos(subsolarLng)
-  const sy = Math.cos(subsolarLat) * Math.sin(subsolarLng)
-  const sz = Math.sin(subsolarLat)
 
   const ux = -Math.sin(subsolarLng)
   const uy = Math.cos(subsolarLng)
