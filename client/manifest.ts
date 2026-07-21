@@ -1,8 +1,8 @@
-import { createForgeModuleClient } from '@lifeforge/federation'
+import { createForgeModule } from '@lifeforge/federation'
 
 import contract from './contract'
 
-const { forgeAPI, ...manifest } = createForgeModuleClient({
+const { forgeAPI, ...manifest } = createForgeModule({
   routes: {},
   hidden: true,
   contract,
