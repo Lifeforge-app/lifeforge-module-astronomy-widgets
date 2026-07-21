@@ -2,7 +2,7 @@
 [2m$ cd client && vite build[22m
 [31mfailed to load config from /Users/melvinchia/Desktop/lifeforge/modules/lifeforge--astronomy-widgets/client/vite.config.ts[39m
 [31merror during build:
-file:///Users/melvinchia/Desktop/lifeforge/modules/lifeforge--astronomy-widgets/node_modules/.vite-temp/vite.config.ts.timestamp-1784640062634-3519e763e66708.mjs:2
+file:///Users/melvinchia/Desktop/lifeforge/modules/lifeforge--astronomy-widgets/node_modules/.vite-temp/vite.config.ts.timestamp-1784640476734-f6e40c1b0604d8.mjs:2
 import { defineModuleConfig } from "file:///Users/melvinchia/Desktop/lifeforge/packages/configs/dist/vite.js";
          ^^^^^^^^^^^^^^^^^^
 SyntaxError: The requested module 'file:///Users/melvinchia/Desktop/lifeforge/packages/configs/dist/vite.js' does not provide an export named 'defineModuleConfig'
