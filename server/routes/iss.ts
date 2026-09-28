@@ -30,6 +30,18 @@ const ResultSchema = z.object({
   terminator: z.array(PositionPointSchema)
 })
 
+const EMPTY_RESULT: z.infer<typeof ResultSchema> = {
+  status: {
+    latitude: 0,
+    longitude: 0,
+    altitude: 0,
+    velocity: 0,
+    timestamp: 0
+  },
+  positions: [],
+  terminator: []
+}
+
 export const get = forge
   .query({
     description: 'Get ISS current status and orbit path from NASA TLE',
@@ -57,17 +69,7 @@ export const get = forge
       !positionAndVelocity.velocity ||
       typeof positionAndVelocity.velocity === 'boolean'
     ) {
-      return response.ok({
-        status: {
-          latitude: 0,
-          longitude: 0,
-          altitude: 0,
-          velocity: 0,
-          timestamp: 0
-        },
-        positions: [],
-        terminator: []
-      })
+      return response.ok(EMPTY_RESULT)
     }
 
     const gmst = gstime(date)
@@ -75,6 +77,10 @@ export const get = forge
     const altitude = eciToAltitude(positionAndVelocity.position, gmst)
     const velocity = eciToSpeed(positionAndVelocity.velocity) * 3600
     const timestamp = Math.floor(now / 1000)
+
+    if (![lat, lng, altitude, velocity].every(Number.isFinite)) {
+      return response.ok(EMPTY_RESULT)
+    }
 
     const status = {
       latitude: lat,
@@ -91,7 +97,11 @@ export const get = forge
       const pv = propagate(satrec, pointDate)
 
       if (pv && pv.position && typeof pv.position !== 'boolean') {
-        positionsPoints.push(eciToLatLng(pv.position, gstime(pointDate)))
+        const point = eciToLatLng(pv.position, gstime(pointDate))
+
+        if (Number.isFinite(point.lat) && Number.isFinite(point.lng)) {
+          positionsPoints.push(point)
+        }
       }
     }
 
