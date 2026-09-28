@@ -1,12 +1,14 @@
 import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
+import DOMPurify from 'dompurify'
 import { useState } from 'react'
 
 import { type WidgetConfig } from '@lifeforge/configs'
 import {
   Box,
   LoadingScreen,
+  Prose,
   Scrollbar,
   Stack,
   Text,
@@ -36,11 +38,13 @@ function APOD() {
             icon="tabler:info-circle"
             id="apod-widget-tooltip"
             place="bottom-end"
-            positionStrategy="absolute"
           >
-            <Text as="p" leading="relaxed" style={{ maxWidth: '20rem' }}>
-              {apodQuery.data.explanation}
-            </Text>
+            <Prose
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(apodQuery.data.explanation)
+              }}
+              style={{ maxWidth: '20rem' }}
+            />
           </Tooltip>
         )
       }
