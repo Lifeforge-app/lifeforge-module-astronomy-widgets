@@ -16,3 +16,4 @@ tsbuild
 *.njsproj
 *.sln
 *.sw?
+*.log
