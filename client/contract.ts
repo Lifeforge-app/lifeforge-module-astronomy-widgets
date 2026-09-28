@@ -13,19 +13,16 @@ export const contract = {
           "$schema": "https://json-schema.org/draft/2020-12/schema",
           "type": "object",
           "properties": {
-            "title": {
-              "type": "string"
-            },
             "date": {
               "type": "string"
             },
-            "explanation": {
+            "post_id": {
+              "type": "number"
+            },
+            "title": {
               "type": "string"
             },
-            "hdurl": {
-              "type": "string"
-            },
-            "url": {
+            "permalink": {
               "type": "string"
             },
             "media_type": {
@@ -34,15 +31,46 @@ export const contract = {
                 "image",
                 "video"
               ]
+            },
+            "explanation": {
+              "type": "string"
+            },
+            "credit": {
+              "type": "string"
+            },
+            "copyright": {
+              "type": "string"
+            },
+            "alt": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            },
+            "hdurl": {
+              "type": "string"
+            },
+            "basic_html": {
+              "type": "string"
+            },
+            "basic_html_url": {
+              "type": "string"
             }
           },
           "required": [
-            "title",
             "date",
+            "post_id",
+            "title",
+            "permalink",
+            "media_type",
             "explanation",
-            "hdurl",
+            "credit",
+            "copyright",
+            "alt",
             "url",
-            "media_type"
+            "hdurl",
+            "basic_html",
+            "basic_html_url"
           ],
           "additionalProperties": false
         }

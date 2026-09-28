@@ -8,12 +8,19 @@ const cacheTime = 1000 * 60 * 30
 let lastFetch = 0
 
 const APODDataSchema = z.object({
-  title: z.string(),
   date: z.string(),
+  post_id: z.number(),
+  title: z.string(),
+  permalink: z.string(),
+  media_type: z.enum(['image', 'video']),
   explanation: z.string(),
-  hdurl: z.string(),
+  credit: z.string(),
+  copyright: z.string(),
+  alt: z.string(),
   url: z.string(),
-  media_type: z.enum(['image', 'video'])
+  hdurl: z.string(),
+  basic_html: z.string(),
+  basic_html_url: z.string()
 })
 
 export const get = forge
@@ -43,19 +50,26 @@ export const get = forge
 
       if (!apiKey) {
         return response.ok({
-          title: 'Missing NASA API Key',
           date: new Date().toISOString().split('T')[0],
+          post_id: 0,
+          title: 'Missing NASA API Key',
+          permalink: '',
+          media_type: 'image' as const,
           explanation: 'Add a NASA API key in the API Keys manager.',
-          hdurl: '',
+          credit: '',
+          copyright: '',
+          alt: '',
           url: '',
-          media_type: 'image' as const
+          hdurl: '',
+          basic_html: '',
+          basic_html_url: ''
         })
       }
 
       const res = await fetch(
-        `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`
+        `https://science.nasa.gov/wp-json/wp/v2/apod-basic?api_key=${apiKey}`
       )
-      const data = await res.json()
+      const data = (await res.json())[0]
 
       cache.set('apod', data)
       lastFetch = now

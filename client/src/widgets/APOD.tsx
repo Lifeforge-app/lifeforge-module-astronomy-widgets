@@ -51,13 +51,19 @@ function APOD() {
         <WithQuery query={apodQuery} showRetryButton={false}>
           {data => (
             <Stack height="100%">
-              <Text as="h3" lineClamp={2} size="lg" title={data.title} weight="semibold">
+              <Text
+                as="h3"
+                lineClamp={2}
+                size="lg"
+                title={data.title}
+                weight="semibold"
+              >
                 {data.title}
               </Text>
               <Text color="muted" mb="sm" size="sm">
                 {dayjs(data.date).format('LL')}
               </Text>
-              {data.media_type === 'image' && data.url ? (
+              {data.media_type === 'image' && data.hdurl ? (
                 <Box
                   flex="1"
                   position="relative"
@@ -67,8 +73,8 @@ function APOD() {
                 >
                   {!imageLoaded && <LoadingScreen loaderSize="1rem" />}
                   <img
-                    alt={data.title}
-                    src={data.url}
+                    alt={data.alt}
+                    src={data.hdurl}
                     style={{
                       width: '100%',
                       height: '100%',
