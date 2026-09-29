@@ -4,7 +4,7 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 
 import { type InferOutput } from '@lifeforge/api'
 import { useModuleTranslation } from '@lifeforge/localization'
-import { Box, Stack, Text, Tooltip } from '@lifeforge/ui'
+import { Box, IconTooltip, Stack, Text } from '@lifeforge/ui'
 
 import { forgeAPI } from '@/manifest'
 
@@ -20,7 +20,7 @@ function ISSTooltipContent({
 
   return (
     <Box mr="md">
-      <Tooltip
+      <IconTooltip
         icon="tabler:info-circle"
         id="iss-widget-tooltip"
         place="bottom-end"
@@ -31,11 +31,7 @@ function ISSTooltipContent({
             <Text as="h3" weight="medium">
               {t('widgets.iss.tooltip.rawPosition')}
             </Text>
-            <Text
-              as="p"
-              color={{ base: 'bg-800', dark: 'bg-100' }}
-              size="lg"
-            >
+            <Text as="p" color={{ base: 'bg-800', dark: 'bg-100' }} size="lg">
               {Number.isFinite(data.status.latitude)
                 ? data.status.latitude.toFixed(4)
                 : '—'}
@@ -49,16 +45,12 @@ function ISSTooltipContent({
             <Text as="h3" weight="medium">
               {t('widgets.iss.tooltip.lastFetched')}
             </Text>
-            <Text
-              as="p"
-              color={{ base: 'bg-800', dark: 'bg-100' }}
-              size="lg"
-            >
+            <Text as="p" color={{ base: 'bg-800', dark: 'bg-100' }} size="lg">
               {dayjs(data.status.timestamp * 1000).format('LLL')}
             </Text>
           </Box>
         </Stack>
-      </Tooltip>
+      </IconTooltip>
     </Box>
   )
 }

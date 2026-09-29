@@ -8,10 +8,10 @@ import {
   Box,
   Button,
   Flex,
+  IconTooltip,
   LoadingScreen,
   Stack,
   Text,
-  Tooltip,
   Widget,
   WithQuery,
   useModalStore
@@ -35,8 +35,9 @@ export interface EPICImage {
 function EPIC() {
   const { open: openModal } = useModalStore()
   const [imageLoaded, setImageLoaded] = useState(false)
-  const [selectedId, setSelectedId] = useState<string | null>(
-    () => localStorage.getItem('epic-selected-id')
+
+  const [selectedId, setSelectedId] = useState<string | null>(() =>
+    localStorage.getItem('epic-selected-id')
   )
 
   const epicQuery = useQuery(
@@ -79,7 +80,7 @@ function EPIC() {
                   }
                 />
               )}
-              <Tooltip
+              <IconTooltip
                 icon="tabler:info-circle"
                 id="epic-widget-tooltip"
                 place="bottom-end"
@@ -91,7 +92,7 @@ function EPIC() {
                 <Text as="p" color="muted" mt="sm" size="sm">
                   {dayjs(selectedImage.date).format('LLL')}
                 </Text>
-              </Tooltip>
+              </IconTooltip>
             </Flex>
           )
         }

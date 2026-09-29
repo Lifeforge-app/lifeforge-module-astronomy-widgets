@@ -7,12 +7,12 @@ import { useState } from 'react'
 import { type WidgetConfig } from '@lifeforge/configs'
 import {
   Box,
+  IconTooltip,
   LoadingScreen,
   Prose,
   Scrollbar,
   Stack,
   Text,
-  Tooltip,
   Widget,
   WithQuery
 } from '@lifeforge/ui'
@@ -34,7 +34,7 @@ function APOD() {
     <Widget
       actionComponent={
         apodQuery.data && (
-          <Tooltip
+          <IconTooltip
             icon="tabler:info-circle"
             id="apod-widget-tooltip"
             place="bottom-end"
@@ -45,7 +45,7 @@ function APOD() {
               }}
               style={{ maxWidth: '20rem' }}
             />
-          </Tooltip>
+          </IconTooltip>
         )
       }
       icon="tabler:photo-star"
