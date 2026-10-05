@@ -34,7 +34,6 @@ export const get = forge
   })
   .callback(
     async ({
-      pb,
       response,
       core: {
         api: { getAPIKey }
@@ -46,7 +45,7 @@ export const get = forge
         return response.ok(cache.get('apod') as z.infer<typeof APODDataSchema>)
       }
 
-      const apiKey = await getAPIKey('nasa', pb).catch(() => null)
+      const apiKey = await getAPIKey('nasa').catch(() => null)
 
       if (!apiKey) {
         return response.ok({
