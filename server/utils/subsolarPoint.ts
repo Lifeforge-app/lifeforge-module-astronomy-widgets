@@ -45,7 +45,7 @@ export function getSubsolarPoint(now: number) {
 
   const utcHours =
     date.getUTCHours() + date.getUTCMinutes() / 60 + date.getUTCSeconds() / 3600
-  const hourAngle = ((utcHours * 15 + eqTime / 4 - 180) * Math.PI) / 180
+  const hourAngle = ((180 - utcHours * 15 - eqTime / 4) * Math.PI) / 180
 
   return { lat: declination, lng: hourAngle }
 }
