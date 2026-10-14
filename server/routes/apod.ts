@@ -49,7 +49,7 @@ export const get = forge
 
       if (!apiKey) {
         return response.ok({
-          date: new Date().toISOString().split('T')[0],
+          date: new Date().toISOString().split('T')[0] ?? '',
           post_id: 0,
           title: 'Missing NASA API Key',
           permalink: '',

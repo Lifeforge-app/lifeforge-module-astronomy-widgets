@@ -44,7 +44,7 @@ export const get = forge
     const images: Array<z.infer<typeof EPICImageSchema>> = await res.json()
 
     const result = images.map(img => {
-      const [year, month, day] = img.date.split(' ')[0].split('-')
+      const [year, month, day] = (img.date.split(' ')[0] ?? '').split('-')
 
       return {
         ...img,

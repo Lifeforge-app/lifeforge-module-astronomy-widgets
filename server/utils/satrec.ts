@@ -20,7 +20,7 @@ export async function getTLESatrec(cache: Map<string, unknown>) {
   const text = await res.text()
   const lines = text.trim().split('\n')
 
-  const satrec = twoline2satrec(lines[1].trim(), lines[2].trim())
+  const satrec = twoline2satrec(lines[1]?.trim() ?? '', lines[2]?.trim() ?? '')
 
   cache.set('tle', satrec)
   lastTLEDate = +new Date()
