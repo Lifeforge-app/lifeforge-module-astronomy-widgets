@@ -36,6 +36,7 @@ function APOD() {
       actionComponent={
         apodQuery.data && (
           <IconTooltip
+            clickable
             openOnClick
             icon="tabler:info-circle"
             id="apod-widget-tooltip"
@@ -86,7 +87,8 @@ function APOD() {
                         width: '100%',
                         height: '100%',
                         objectFit: 'cover',
-                        display: imageLoaded ? 'block' : 'none'
+                        display: imageLoaded ? 'block' : 'none',
+                        pointerEvents: 'auto'
                       }}
                       onLoad={() => setImageLoaded(true)}
                     />
