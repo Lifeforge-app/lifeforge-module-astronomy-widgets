@@ -20,6 +20,7 @@
   "dependencies": {
     "@vis.gl/react-google-maps": "^1.8.3",
     "dompurify": "^3.4.12",
+    "react-medium-image-zoom": "^5.4.0",
     "satellite.js": "^7.0.1"
   },
   "devDependencies": {

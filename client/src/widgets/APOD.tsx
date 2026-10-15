@@ -3,6 +3,7 @@ import dayjs from 'dayjs'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
 import DOMPurify from 'dompurify'
 import { useState } from 'react'
+import Zoom from 'react-medium-image-zoom'
 
 import { type WidgetConfig } from '@lifeforge/configs'
 import {
@@ -35,6 +36,7 @@ function APOD() {
       actionComponent={
         apodQuery.data && (
           <IconTooltip
+            openOnClick
             icon="tabler:info-circle"
             id="apod-widget-tooltip"
             place="bottom-end"
@@ -76,17 +78,19 @@ function APOD() {
                   width="100%"
                 >
                   {!imageLoaded && <LoadingScreen loaderSize="1rem" />}
-                  <img
-                    alt={data.alt}
-                    src={data.hdurl}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      display: imageLoaded ? 'block' : 'none'
-                    }}
-                    onLoad={() => setImageLoaded(true)}
-                  />
+                  <Zoom zoomImg={{ src: data.hdurl }} zoomMargin={40}>
+                    <img
+                      alt={data.alt}
+                      src={data.hdurl}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        display: imageLoaded ? 'block' : 'none'
+                      }}
+                      onLoad={() => setImageLoaded(true)}
+                    />
+                  </Zoom>
                 </Box>
               ) : (
                 <Box
