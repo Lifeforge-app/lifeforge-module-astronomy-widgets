@@ -34,11 +34,11 @@ function ISSTooltipContent({
             <Text as="p" color={{ base: 'bg-800', dark: 'bg-100' }} size="lg">
               {Number.isFinite(data.status.latitude)
                 ? data.status.latitude.toFixed(4)
-                : '—'}
+                : '-'}
               ,{' '}
               {Number.isFinite(data.status.longitude)
                 ? data.status.longitude.toFixed(4)
-                : '—'}
+                : '-'}
             </Text>
           </Box>
           <Box>
