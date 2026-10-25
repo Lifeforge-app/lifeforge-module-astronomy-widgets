@@ -9,6 +9,7 @@ import {
   Button,
   Flex,
   IconTooltip,
+  Image,
   LoadingScreen,
   Stack,
   Text,
@@ -112,15 +113,13 @@ function EPIC() {
                   width="100%"
                 >
                   {!imageLoaded && <LoadingScreen loaderSize="1rem" />}
-                  <img
+                  <Image
                     alt="Earth"
+                    fit="contain"
+                    height="100%"
                     src={selectedImage.url}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'contain',
-                      display: imageLoaded ? 'block' : 'none'
-                    }}
+                    style={{ display: imageLoaded ? 'block' : 'none' }}
+                    width="100%"
                     onLoad={() => setImageLoaded(true)}
                   />
                 </Box>

@@ -11,6 +11,7 @@ import { type InferOutput } from '@lifeforge/api'
 import {
   Box,
   EmptyStateScreen,
+  Image,
   WithQuery,
   usePersonalization
 } from '@lifeforge/ui'
@@ -48,10 +49,12 @@ function ISSMap({
                       lng: data.status.longitude
                     }}
                   >
-                    <img
+                    <Image
                       alt="ISS"
+                      fallback={null}
+                      height="3em"
                       src="https://upload.wikimedia.org/wikipedia/commons/f/f2/ISS_spacecraft_model_1.png"
-                      style={{ width: '3rem', height: '3rem' }}
+                      width="3em"
                     />
                   </AdvancedMarker>
 

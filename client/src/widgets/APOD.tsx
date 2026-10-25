@@ -3,7 +3,6 @@ import dayjs from 'dayjs'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
 import DOMPurify from 'dompurify'
 import { useState } from 'react'
-import Zoom from 'react-medium-image-zoom'
 
 import { type WidgetConfig } from '@lifeforge/configs'
 import {
@@ -15,7 +14,8 @@ import {
   Stack,
   Text,
   Widget,
-  WithQuery
+  WithQuery,
+  ZoomableImage
 } from '@lifeforge/ui'
 
 import { forgeAPI } from '@/manifest'
@@ -79,20 +79,20 @@ function APOD() {
                   width="100%"
                 >
                   {!imageLoaded && <LoadingScreen loaderSize="1rem" />}
-                  <Zoom zoomImg={{ src: data.hdurl }} zoomMargin={40}>
-                    <img
-                      alt={data.alt}
-                      src={data.hdurl}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        display: imageLoaded ? 'block' : 'none',
-                        pointerEvents: 'auto'
-                      }}
-                      onLoad={() => setImageLoaded(true)}
-                    />
-                  </Zoom>
+                  <ZoomableImage
+                    alt={data.alt ?? ''}
+                    fit="cover"
+                    height="100%"
+                    src={data.hdurl}
+                    style={{
+                      display: imageLoaded ? 'block' : 'none',
+                      pointerEvents: 'auto'
+                    }}
+                    width="100%"
+                    zoomMargin={40}
+                    zoomSrc={data.hdurl}
+                    onLoad={() => setImageLoaded(true)}
+                  />
                 </Box>
               ) : (
                 <Box
