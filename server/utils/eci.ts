@@ -2,7 +2,7 @@ import { type EciVec3, eciToGeodetic } from 'satellite.js'
 
 export function eciToLatLng(eci: EciVec3<number>, gmst: number) {
   const geodetic = eciToGeodetic(
-    { x: eci.x, y: eci.y, z: eci.z } as Parameters<typeof eciToGeodetic>[0],
+    { x: eci.x, y: eci.y, z: eci.z },
     gmst
   )
 
@@ -14,7 +14,7 @@ export function eciToLatLng(eci: EciVec3<number>, gmst: number) {
 
 export function eciToAltitude(eci: EciVec3<number>, gmst: number) {
   const geodetic = eciToGeodetic(
-    { x: eci.x, y: eci.y, z: eci.z } as Parameters<typeof eciToGeodetic>[0],
+    { x: eci.x, y: eci.y, z: eci.z },
     gmst
   )
 
